@@ -25,7 +25,7 @@ public class ApiExceptionHandler {
     public ProblemDetail handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpServletRequest request) {
         ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         pd.setTitle("Validation failed");
-        pd.setType(URI.create("https://example.com/problems/validation"));
+        pd.setType(URI.create("https://coupon.com/problems/validation"));
         pd.setDetail("Request validation failed");
         pd.setProperty("errors", fieldErrors(ex));
         pd.setProperty("path", request.getRequestURI());
@@ -36,7 +36,7 @@ public class ApiExceptionHandler {
     public ProblemDetail handleConstraintViolation(ConstraintViolationException ex, HttpServletRequest request) {
         ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         pd.setTitle("Validation failed");
-        pd.setType(URI.create("https://example.com/problems/validation"));
+        pd.setType(URI.create("https://coupon.com/problems/validation"));
         pd.setDetail(ex.getMessage());
         pd.setProperty("path", request.getRequestURI());
         return pd;
@@ -46,7 +46,7 @@ public class ApiExceptionHandler {
     public ProblemDetail handleDomainValidation(DomainValidationException ex, HttpServletRequest request) {
         ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         pd.setTitle("Validation failed");
-        pd.setType(URI.create("https://example.com/problems/domain-validation"));
+        pd.setType(URI.create("https://coupoun.com/problems/domain-validation"));
         pd.setDetail(ex.getMessage());
         pd.setProperty("errors", ex.getErrors());
         pd.setProperty("path", request.getRequestURI());
@@ -57,7 +57,7 @@ public class ApiExceptionHandler {
     public ProblemDetail handleNotFound(CouponService.CouponNotFoundException ex, HttpServletRequest request) {
         ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
         pd.setTitle("Not Found");
-        pd.setType(URI.create("https://example.com/problems/not-found"));
+        pd.setType(URI.create("https://coupon.com/problems/not-found"));
         pd.setDetail(ex.getMessage());
         pd.setProperty("path", request.getRequestURI());
         return pd;
@@ -67,7 +67,7 @@ public class ApiExceptionHandler {
     public ProblemDetail handleAlreadyDeleted(AlreadyDeletedException ex, HttpServletRequest request) {
         ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.CONFLICT);
         pd.setTitle("Conflict");
-        pd.setType(URI.create("https://example.com/problems/conflict"));
+        pd.setType(URI.create("https://coupon.com/problems/conflict"));
         pd.setDetail(ex.getMessage());
         pd.setProperty("path", request.getRequestURI());
         return pd;
