@@ -3,6 +3,7 @@ package com.zagdev.coupon.domain.model.vo;
 import com.zagdev.coupon.domain.exception.DomainValidationException;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public final class DiscountValue {
@@ -22,7 +23,13 @@ public final class DiscountValue {
         if (value.compareTo(MIN) < 0) {
             throw new DomainValidationException("discountValue must be >= 0.5");
         }
-        return new DiscountValue(value);
+
+        BigDecimal normalized = value.stripTrailingZeros();
+        if (normalized.scale() < 0) {
+            normalized = normalized.setScale(0, RoundingMode.UNNECESSARY);
+        }
+
+        return new DiscountValue(normalized);
     }
 
     public BigDecimal value() {
@@ -46,4 +53,3 @@ public final class DiscountValue {
         return value.toPlainString();
     }
 }
-
